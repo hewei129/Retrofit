@@ -1,7 +1,6 @@
 package com.hw.lib_net.api
 
 import com.hw.lib_net.BuildConfig
-import me.andydev.retrofit.lifecycle.RetrofitLifecycle
 import java.lang.reflect.ParameterizedType
 import java.util.concurrent.ConcurrentHashMap
 
