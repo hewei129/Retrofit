@@ -1,0 +1,2 @@
+# Retrofit
+Retrofit+Coroutine+Okhttp 由kotlin编码封装的一套网络请求框架，支持跟随activity、fragment生命周期销毁而取消
