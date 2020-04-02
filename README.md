@@ -16,26 +16,8 @@ Step 2. Add the dependency
 	        implementation 'com.github.hewei129:Retrofit:1.0.0'
 	}
   
-Step 3. Add the host in your app build.gradle at the buildTypes:
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            debuggable false
-            shrinkResources false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "API_HOST", "")//填写正式服务器地址
-        }
-        debug {
-            minifyEnabled false
-            debuggable true
-            shrinkResources false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "API_HOST", "")//填写测试服务器地址
-        }
-    }
-    
-Step 4. Create a Respository :
+Step 3. Create a Respository :
 
     class TestRespository : ApiService<TestRespository.Api>() {
 
@@ -51,7 +33,7 @@ Step 4. Create a Respository :
       }
     }
     
-Step 5. How do it:
+Step 4. How do it:
       
       用协程请求接口示例
        
