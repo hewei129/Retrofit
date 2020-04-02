@@ -15,9 +15,11 @@ Step 2. Add the dependency
 	dependencies {
 	        implementation 'com.github.hewei129:Retrofit:1.0.0'
 	}
-  
+Step 3. Set the baseUrl：
+	
+	 RetrofitClient.getInstance().baseUrl = “”
 
-Step 3. Create a Respository :
+Step 4. Create a Respository :
 
     class TestRespository : ApiService<TestRespository.Api>() {
 
@@ -33,7 +35,7 @@ Step 3. Create a Respository :
       }
     }
     
-Step 4. How do it:
+Step 5. How do it:
       
       用协程请求接口示例
        
