@@ -22,14 +22,14 @@ android {
             debuggable false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "API_HOST", "\"https://why-api.sj56.com.cn\"")
+            buildConfigField("String", "API_HOST", "")//填写正式服务器地址
         }
         debug {
             minifyEnabled false
             debuggable true
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "API_HOST", "\"https://whyt-api.sj56.com.cn\"")
+            buildConfigField("String", "API_HOST", "")//填写测试服务器地址
         }
     }
 }
