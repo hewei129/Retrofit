@@ -1,6 +1,6 @@
 package com.hw.lib_net.api
 
-import com.hw.lib_net.BuildConfig
+import com.franmontiel.persistentcookiejar.BuildConfig
 import java.lang.reflect.ParameterizedType
 import java.util.concurrent.ConcurrentHashMap
 
@@ -16,11 +16,10 @@ import java.util.concurrent.ConcurrentHashMap
 abstract class ApiService<T> {
 
     private val sInterfaceImplementCache: MutableMap<Class<*>, Any?> = ConcurrentHashMap()
-    private val apiHost = BuildConfig.API_HOST
+//    private val apiHost = BuildConfig.
 
     protected fun ApiClient(): T {
-
-        val retrofit = RetrofitClient.getInstance().getRetrofit(apiHost, "")
+        val retrofit = RetrofitClient.getInstance().getRetrofit( )
         return retrofit.create(getType())
     }
 

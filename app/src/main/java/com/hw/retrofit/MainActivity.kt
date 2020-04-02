@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import com.hw.lib_net.api.RetrofitClient
 import com.hw.lib_net.coroutine.launch
 import com.hw.lib_net.retrofit.executeResponse
 import kotlinx.coroutines.*
@@ -22,6 +23,7 @@ class MainActivity : Activity() {
         create()
         setContentView(R.layout.activity_main)
         Log.e("main", "111111")
+        RetrofitClient.getInstance().baseUrl = "https://whyt-api.sj56.com.cn"
         launch ({
             val result = withContext(Dispatchers.IO) {
                 TestRespository().getVersionInfo()

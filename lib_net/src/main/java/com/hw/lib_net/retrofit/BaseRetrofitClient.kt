@@ -1,8 +1,12 @@
 package com.hw.lib_net.retrofit
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.text.TextUtils
-import com.hw.lib_net.BuildConfig
+import com.franmontiel.persistentcookiejar.BuildConfig
+import com.franmontiel.persistentcookiejar.PersistentCookieJar
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.hw.lib_net.exception.ApiException
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -27,13 +31,15 @@ import javax.net.ssl.*
  * @description retrofit父类
  */
 
-abstract class BaseRetrofitClient {
+abstract class BaseRetrofitClient() {
 
     companion object {
         internal const val CONNECT_TIME_OUT: Long = 10
         internal const val READ_WRITE_TIME_OUT: Long = 10
     }
 
+
+    var baseUrl: String ?= null
     private val client: OkHttpClient
         get() {
             val builder = OkHttpClient.Builder()
@@ -150,8 +156,7 @@ abstract class BaseRetrofitClient {
         return HostnameVerifier { s, _ -> baseUrl?.contains(s)!! }
     }
 
-    private var baseUrl: String ?= null
-    fun getRetrofit(baseUrl: String): Retrofit{
+    fun getRetrofit(): Retrofit{
         check(!empty(baseUrl)) { "baseUrl can not be null" }
         this.baseUrl = baseUrl
         return Retrofit.Builder()
@@ -161,7 +166,7 @@ abstract class BaseRetrofitClient {
                 .build()
     }
     protected var token: String ?= null
-    fun getRetrofit(baseUrl: String, token: String?): Retrofit{
+    fun getRetrofit( token: String?): Retrofit{
         check(!empty(baseUrl)) { "baseUrl can not be null" }
         this.baseUrl = baseUrl
         this.token = token
