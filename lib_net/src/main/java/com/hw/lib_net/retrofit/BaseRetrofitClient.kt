@@ -3,10 +3,7 @@ package com.hw.lib_net.retrofit
 import android.annotation.SuppressLint
 import android.content.Context
 import android.text.TextUtils
-import com.franmontiel.persistentcookiejar.BuildConfig
-import com.franmontiel.persistentcookiejar.PersistentCookieJar
-import com.franmontiel.persistentcookiejar.cache.SetCookieCache
-import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
+import com.hw.lib_net.BuildConfig
 import com.hw.lib_net.exception.ApiException
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -78,6 +75,7 @@ abstract class BaseRetrofitClient() {
             val request = chain.request()
             val response: Response
             try{
+                throw Exception("服务器错误")
                 response = chain.proceed(request)
                 when(response.code){
                     403 -> {
@@ -94,11 +92,11 @@ abstract class BaseRetrofitClient() {
                     }
                     else -> {
                         if(response.code > 300) {
-                            val message = response.body!!.string()
+                            val message = response.body?.string()
                             if (TextUtils.isEmpty(message)) {
                                 throw ApiException("服务器内部错误!")
                             } else {
-                                throw ApiException(message)
+                                throw ApiException(message!!)
                             }
                            }
                     }
@@ -111,7 +109,7 @@ abstract class BaseRetrofitClient() {
                     e is UnknownHostException -> throw UnknownHostException("无法连接到服务器，请重试")
                     e is ConnectException -> throw ConnectException("无法连接到服务器，请重试!")
                     e.message!!.contains("Failed to connect to ") -> throw Exception("无法连接到服务器，请重试!")
-                    else -> throw Exception(e.message!!)
+                    else -> throw ApiException(e.message!!)
                 }
 
             }

@@ -28,8 +28,6 @@ class MainActivity : Activity() {
             val result = withContext(Dispatchers.IO) {
                 TestRespository().getVersionInfo()
             }
-//            delay(2000)
-//            if(job?.isCancelled) return@launch
             Log.e("main", "333333")
             executeResponse(result, {
                 result.data

@@ -33,6 +33,7 @@ class TestRespository : ApiService<TestRespository.Api>() {
             delay(2000)
             Log.e("main", "66666")
             ApiClient().getVersionInfo()
+
         }
     }
 
