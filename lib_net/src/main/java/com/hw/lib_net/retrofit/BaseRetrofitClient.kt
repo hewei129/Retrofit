@@ -75,7 +75,6 @@ abstract class BaseRetrofitClient() {
             val request = chain.request()
             val response: Response
             try{
-                throw Exception("服务器错误")
                 response = chain.proceed(request)
                 when(response.code){
                     403 -> {
