@@ -13,11 +13,14 @@ Step 1. Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.hewei129:Retrofit:1.1'
+	        implementation 'com.github.hewei129:Retrofit:2.0'
 	}
 Step 3. Set the baseUrl：
 	
-	 RetrofitClient.getInstance().baseUrl = “”
+	setHost("主机地址")//包含http和端口等
+	/**
+	  setToken("")//登录成功后设置token， 支持自定义token的key
+	**/
 
 Step 4. Create a Respository :
 
