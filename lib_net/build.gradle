@@ -1,53 +1,78 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
-
-
+    buildToolsVersion '29.0.3'
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
+    }
     defaultConfig {
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [AROUTER_MODULE_NAME: project.getName()]
+//            }
+//        }
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             debuggable false
             shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "API_HOST", "\"https://172.16.12.150:1080\"")
         }
         debug {
-            minifyEnabled false
             debuggable true
+            minifyEnabled false
             shrinkResources false
+            buildConfigField("String", "API_HOST", "\"https://172.16.12.150:1080\"")
         }
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    //kotlin 协程
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5'
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.5'
+
+    //net
+    api 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+    api 'com.squareup.retrofit2:adapter-rxjava:2.6.2'
     api 'com.squareup.retrofit2:retrofit:2.7.2'
     api 'com.squareup.retrofit2:converter-gson:2.7.2'
-    api 'com.squareup.retrofit2:adapter-rxjava:2.6.2'
-    api 'com.squareup.okhttp3:logging-interceptor:4.0.1'
-    api 'com.squareup.okhttp3:okhttp:4.1.0'
 
+
+    //网络请求缓存
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 
-    //kotlin 协程
-    api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3'
-    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3'
+    api 'com.alibaba:fastjson:1.2.62'
+    //监听网络变化
+    implementation 'com.github.hewei129:NetworkState:1.1'
+    implementation 'com.github.lzyzsd:jsbridge:1.0.4'
+
+    api 'com.tencent:mmkv-static:1.1.2'
+
+    implementation 'com.jeremyliao:live-event-bus:1.5.1'
 }
+
+

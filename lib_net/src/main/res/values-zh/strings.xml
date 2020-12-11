@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">lib_net</string>
+
+    <string name="label_refresh">Pull to refresh</string>
+    <string name="label_load_more">Pull up loading</string>
+    <string name="label_release">Release refresh</string>
+    <string name="label_loading">Loading...</string>
+
+    <string name="warn_request1">无法连接到服务器，请重试!</string>
+    <string name="warn_request2">服务器内部错误!</string>
+    <string name="warn_request3">连接超时，请检查网络设置稍后再试！</string>
+    <string name="warn_request4">请求失败，请重试!</string>
+</resources>

@@ -4,9 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.hw.lib_net.api.RetrofitClient
-import com.hw.lib_net.coroutine.launch
-import com.hw.lib_net.retrofit.executeResponse
+import com.hw.net.config.initHost
+import com.hw.net.service.executeResponse
+import com.hw.net.service.launch
 import kotlinx.coroutines.*
 
 
@@ -18,23 +18,29 @@ import kotlinx.coroutines.*
  */
 
 class MainActivity : Activity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         create()
         setContentView(R.layout.activity_main)
         Log.e("main", "111111")
-        RetrofitClient.getInstance().baseUrl = "https://whyt-api.sj56.com.cn"
-        launch ({
+        initHost("https://172.16.12.150:1080")//第一次设置初始化主机地址
+//        setToken("")//登录成功后设置token
+        launch({
             val result = withContext(Dispatchers.IO) {
                 TestRespository().getVersionInfo()
             }
             Log.e("main", "333333")
             executeResponse(result, {
                 result.data
+                delay(2000)
                 Log.e("main", "444444")
             }, {
-                Log.e("main", "55555")})
-        },this, true, job)
+                delay(2000)
+
+                Log.e("main", "55555")
+            })
+        }, this, true, job)
         Log.e("main", "222222")
 
         startActivity(Intent(this, SecondActivity::class.java))
@@ -42,21 +48,25 @@ class MainActivity : Activity() {
     }
 
     lateinit var job: Job
+    override fun onPause() {
+        super.onPause()
+
+    }
 
     override fun onDestroy() {
         super.onDestroy()
         destroy()
 
     }
+
     fun create() {
-        job = Job()
+        job = SupervisorJob()
     }
 
     fun destroy() {
         job.cancel()
         Log.e("main", "cancel")
     }
-
 
 
 }

@@ -3,7 +3,7 @@ package com.hw.retrofit
 import android.util.Log
 import com.hw.lib_net.api.ApiService
 import com.hw.retrofit.models.response.HwResponse
-import com.hw.retrofit.net_work.retrofit.apiCall
+import com.hw.lib_net.retrofit.apiCall
 import kotlinx.coroutines.delay
 import retrofit2.http.GET
 
@@ -30,8 +30,8 @@ class TestRespository : ApiService<TestRespository.Api>() {
 
     suspend fun getVersionInfo(): HwResponse<String> {
         return apiCall {
-            delay(2000)
-            Log.e("main", "66666")
+//            delay(2000)
+//            Log.e("main", "66666")
             ApiClient().getVersionInfo()
 
         }

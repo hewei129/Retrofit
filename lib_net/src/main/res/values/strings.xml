@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">lib_net</string>
+
+    <string name="label_refresh">Pull to refresh</string>
+    <string name="label_load_more">Pull up loading</string>
+    <string name="label_release">Release refresh</string>
+    <string name="label_loading">Loading...</string>
+
+    <string name="warn_request1">Failed to connect to </string>
+    <string name="warn_request2">Server internal error!</string>
+    <string name="warn_request3">Connection timeout, please check the network settings and try again later!</string>
+    <string name="warn_request4">Request failed, please try again!</string>
 </resources>
