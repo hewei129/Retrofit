@@ -1,11 +1,10 @@
 package com.hw.retrofit
 
-import android.util.Log
-import com.hw.lib_net.api.ApiService
-import com.hw.retrofit.models.response.HwResponse
-import com.hw.lib_net.retrofit.apiCall
-import kotlinx.coroutines.delay
-import retrofit2.http.GET
+import com.hw.healthpass.net.models.response.LoginResponse
+import com.hw.net.service.ApiService
+import com.hw.net.service.apiCall
+import retrofit2.http.Body
+import retrofit2.http.POST
 
 
 /**
@@ -15,31 +14,39 @@ import retrofit2.http.GET
  * @description  用协程请求接口示例
  *
  * fun getVersionInfo(){
-        launch ({
-            val result = withContext(Dispatchers.IO) {
-                TestRespository().getVersionInfo()
-            }
-        executeResponse(result, {
-                result.data
-            }, {})
-        },true)
-    }
+launch ({
+val result = withContext(Dispatchers.IO) {
+TestRespository().getVersionInfo()
+}
+executeResponse(result, {
+result.data
+}, {})
+},true)
+}
  */
 
 class TestRespository : ApiService<TestRespository.Api>() {
 
-    suspend fun getVersionInfo(): HwResponse<String> {
+    //    suspend fun getVersionInfo(): HwResponse<String> {
+//        return apiCall {
+////            delay(2000)
+////            Log.e("main", "66666")
+//            ApiClient().getVersionInfo()
+//
+//        }
+//    }
+    suspend fun login(body: LoginRequest): LoginResponse {
         return apiCall {
-//            delay(2000)
-//            Log.e("main", "66666")
-            ApiClient().getVersionInfo()
-
+            ApiClients().login(body)
         }
     }
 
     interface Api {
-        @GET("/app/v1/versionApp/getVersionInfo")
-        suspend fun getVersionInfo(): HwResponse<String>
+//        @GET("/app/v1/versionApp/getVersionInfo")
+//        suspend fun getVersionInfo(): HwResponse<String>
+
+        @POST("/api/v1/employees/login")
+        suspend fun login(@Body body: LoginRequest): LoginResponse
     }
 
 }

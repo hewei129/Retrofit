@@ -105,14 +105,59 @@ suspend fun <T> executeResponse(
                 }
 
             } else {//正常成功返回需要的结果
-
                 successBlock()
 
             }
+        }else{
+            successBlock()
         }
 
     }
 }
+
+suspend fun <T> executeResponse(
+    code: Int,//token失效的code
+    response: T,
+    successBlock: suspend CoroutineScope.() -> Unit,
+    errorBlock: suspend CoroutineScope.() -> Unit
+) {
+    coroutineScope {
+        if (response is BaseResult) {
+//            response.code = -3000
+            if (response.code != 200) {
+                when (response.code) {
+                    code -> {//token失效的code
+                        run {
+                            //TOKEN失效或者您的账号已在其他设备登录, 退出登陆到登陆页面
+                            ToastUtil.getInstance().toasts("Session invalid, please login again！")
+                            delay(1000)
+                            LiveEventBus.get("logout").post("")
+                        }
+                    }
+                    else -> {
+                        run {
+                            errorBlock()
+                            if(response.result.toString().isNotEmpty() && response.result.toString() != "null")
+                                ToastUtil.getInstance().toasts(response.result.toString())
+//                            if (response.message?.size ?: 0 > 0)
+//                                ToastUtil.getInstance().toasts(response.message?.get(0)!!)
+                        }
+                    }
+
+                }
+
+            } else {//正常成功返回需要的结果
+
+                successBlock()
+
+            }
+        }else{
+            successBlock()
+        }
+
+    }
+}
+
 
 
 

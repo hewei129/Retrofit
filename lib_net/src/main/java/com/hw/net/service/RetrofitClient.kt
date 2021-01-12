@@ -31,7 +31,7 @@ open class RetrofitClient : BaseRetrofitClient() {
     private var context: Context = getApplicationContext()
 
     companion object {
-        private var instance: RetrofitClient? = null
+       private var instance: RetrofitClient? = null
         fun getInstance(): RetrofitClient {
             if (instance == null) {
                 synchronized(RetrofitClient::class.java) {
@@ -42,7 +42,11 @@ open class RetrofitClient : BaseRetrofitClient() {
             }
             return instance!!
         }
+        fun reset(){
+            instance = null
+        }
     }
+
 
     private var bean : DeviceInfoBean
     init {

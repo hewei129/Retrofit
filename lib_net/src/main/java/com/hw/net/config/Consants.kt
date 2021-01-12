@@ -1,6 +1,8 @@
 package com.hw.net.config
 
+import android.app.Application
 import com.hw.net.BuildConfig
+import com.hw.net.service.RetrofitClient
 import com.tencent.mmkv.MMKV
 
 
@@ -10,6 +12,9 @@ import com.tencent.mmkv.MMKV
  * @Copyright ©  Shanghai Xinke Digital Technology Co., Ltd.
  * @description
  */
+fun initMMKV(application: Application){
+    MMKV.initialize(application)
+}
 
 fun apiHost(): String{
     val urlApi = MMKV.defaultMMKV().decodeString("url_api")
@@ -18,6 +23,7 @@ fun apiHost(): String{
 }
 
 fun initHost(apiUrl: String){
+    RetrofitClient.reset()
     MMKV.defaultMMKV().encode("url_api", apiUrl)
 }
 
@@ -31,5 +37,13 @@ fun setToken(key: String, token: String){//支持自定义token的key
 
 fun setUserId(userId: String){
     MMKV.defaultMMKV().encode("user_id", userId)
+}
+
+fun setCustomInterceptor(flag: Boolean){
+    MMKV.defaultMMKV().encode("is_custom_interceptor", flag)
+}
+
+fun getCustomInterceptor(): Boolean{
+    return MMKV.defaultMMKV().decodeBool("is_custom_interceptor")
 }
 

@@ -23,4 +23,5 @@ open class BaseResult : Serializable {
      */
     var code = 0
     open var result: Any ?= null
+    var message = ""
 }

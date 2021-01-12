@@ -1,7 +1,6 @@
 package com.hw.net.service
 
 
-import com.hw.net.config.apiHost
 import java.lang.reflect.ParameterizedType
 
 
@@ -12,12 +11,12 @@ import java.lang.reflect.ParameterizedType
  * @description 网络请求入口
  */
 
-abstract class ApiService<T>  {
+abstract class ApiService<T> {
 
-    private var baseUrl = apiHost()
+//    private var baseUrl = apiHost()
 
     protected fun ApiClients(): T {
-        return RetrofitClient.getInstance().getRetrofit(baseUrl)
+        return RetrofitClient.getInstance().getRetrofit()
             .create(getType())
     }
 
@@ -26,8 +25,6 @@ abstract class ApiService<T>  {
         val p = (t as ParameterizedType).actualTypeArguments
         return p[0] as Class<T>
     }
-
-
 
 
 }

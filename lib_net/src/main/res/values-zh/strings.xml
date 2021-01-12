@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">lib_net</string>
 
     <string name="label_refresh">Pull to refresh</string>
     <string name="label_load_more">Pull up loading</string>
@@ -10,4 +9,7 @@
     <string name="warn_request2">服务器内部错误!</string>
     <string name="warn_request3">连接超时，请检查网络设置稍后再试！</string>
     <string name="warn_request4">请求失败，请重试!</string>
+    <string name="warn_request5">禁止访问！</string>
+    <string name="warn_request6">链接错误</string>
+    <string name="warn_request7">服务器升级中！</string>
 </resources>
