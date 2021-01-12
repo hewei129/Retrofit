@@ -8,4 +8,4 @@ package com.hw.healthpass.net.models.response
  * @description
  */
 
-data class LoginResponse(val Authentication: String?) : BaseResponse()
+data class LoginResponse(val token: String?) : BaseResponse()
