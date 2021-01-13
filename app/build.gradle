@@ -1,6 +1,8 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+}
 //apply plugin: 'kotlin-kapt'
 
 android {
@@ -20,16 +22,15 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            debuggable false
-            shrinkResources false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug {
-            minifyEnabled false
-            debuggable true
-            shrinkResources false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 
 }
