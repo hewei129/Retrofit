@@ -37,7 +37,7 @@ class MainActivity : Activity() {
             }
             Log.e("main", "333333")
             executeResponse(result, {
-                Log.e("result=",  result.token)
+                result.token?.let { Log.e("result=", it) }
 
                 delay(2000)
                 Log.e("main", "444444")
