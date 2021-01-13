@@ -19,7 +19,8 @@ fun initMMKV(application: Application){
 fun apiHost(): String{
     val urlApi = MMKV.defaultMMKV().decodeString("url_api")
     return if(!urlApi.isNullOrEmpty()) urlApi
-    else BuildConfig.API_HOST
+    else ""
+//    else BuildConfig.API_HOST
 }
 
 fun initHost(apiUrl: String){
