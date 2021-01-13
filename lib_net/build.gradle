@@ -2,28 +2,18 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
-//apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
     buildToolsVersion '29.0.3'
-//    kapt {
-//        arguments {
-//            arg("AROUTER_MODULE_NAME", project.getName())
-//        }
-//    }
     defaultConfig {
         minSdkVersion 22
         targetSdkVersion 30
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
 
-//        javaCompileOptions {
-//            annotationProcessorOptions {
-//                arguments = [AROUTER_MODULE_NAME: project.getName()]
-//            }
-//        }
     }
 
     buildTypes {
@@ -77,7 +67,7 @@ dependencies {
     api 'com.github.bumptech.glide:glide:4.8.0'
     api 'com.github.bumptech.glide:okhttp3-integration:4.8.0@aar'
     api 'com.github.bumptech.glide:annotations:4.8.0'
-//    kapt 'com.github.bumptech.glide:compiler:4.8.0'
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
 }
 
 
