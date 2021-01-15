@@ -65,5 +65,38 @@ Step 6. How do it:
               },context, true, job) //job = SupervisorJob()， ⚠️此处的job一般在VieModel或者BaseActivity中维护，具体使用可以参考事例MainActivity代码
           }
        
+Step 7. How use it load image:
+       
+      注意：由于封装Glide用到了Antation, 需要在app 的build.gradle中配置：
+      
+      新增 id 'kotlin-kapt' 如下：
+      
+      plugins {
+	    id 'com.android.application'
+	    ..
+	    id 'kotlin-kapt'
+      }
+      
+      或者：
+      
+      apply plugin: 'com.android.application'
+      apply plugin: 'kotlin-kapt'
+      
+      然后新增依赖库：
+      
+	dependencies {
+		..
+		kapt 'com.github.bumptech.glide:compiler:4.8.0'
+	}
+	
+      最后调用代码：
+      
+      1. imgLoad(context, pic_url, iv_photo)
+      2. imgLoad(context, pic_url, iv_photo, R.drawable.ic_default)
+	
+	
+	
 
+       
+       
 
