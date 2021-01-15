@@ -55,10 +55,14 @@ Step 6. How do it:
                   val result = withContext(Dispatchers.IO) {
                       TestRespository().getVersionInfo()
                   }
-              executeResponse(result, {
-                      result.data
-                  }, {})
-              },true)
+              executeResponse(result, 
+	      		{
+                      		result.data //正常返回成功后处理
+                  	}, 
+			{
+				//异常报错处理
+		  	})
+              },context, true, job) //job = SupervisorJob()， ⚠️此处的job一般在VieModel或者BaseActivity中维护，具体使用可以参考事例MainActivity代码
           }
        
 
