@@ -19,7 +19,9 @@ Step 2. Add the dependency
 	        implementation 'com.github.hewei129:Retrofit:2.2.8'
 	}
 	
-Step 3.在application初始化时或者在调用网络之前的Activity中优先加载mmkv， 直接调用initMMKV(application) //因为库里依赖了MMKV库存储token等字段
+Step 3. Attention：
+
+	在application初始化时或者在调用网络之前的Activity中优先加载mmkv， 直接调用initMMKV(application) //因为库里依赖了MMKV库存储token等字段
 	
 Step 4. Set the baseUrl：
 	
