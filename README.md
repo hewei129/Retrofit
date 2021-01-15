@@ -67,7 +67,7 @@ Step 6. How do it:
        
 Step 7. How use it load image:
        
-      注意：由于封装Glide用到了Antation, 需要在app 的build.gradle中配置：
+      注意：由于封装Glide用到了注解处理器, 需要在app 的build.gradle中配置：
       
       新增 id 'kotlin-kapt' 如下：
       
@@ -84,10 +84,10 @@ Step 7. How use it load image:
       
       然后新增依赖库：
       
-	dependencies {
+      dependencies {
 		..
 		kapt 'com.github.bumptech.glide:compiler:4.8.0'
-	}
+      }
 	
       最后调用代码：
       
