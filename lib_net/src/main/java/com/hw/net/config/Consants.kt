@@ -41,6 +41,7 @@ fun setUserId(userId: String){
 }
 
 fun setCustomInterceptor(flag: Boolean){
+    RetrofitClient.reset()
     MMKV.defaultMMKV().encode("is_custom_interceptor", flag)
 }
 
